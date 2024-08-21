@@ -1,0 +1,19 @@
+version: '3'
+services:
+  database:
+    image: postgres:13
+    container_name: meta_commerce_slave_db
+    restart: always
+    volumes:
+      - ./data/postgresslave:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: spe3d
+      POSTGRES_PASSWORD: ${DB_PWD}
+      POSTGRES_DB: meta_commerce
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "1"
+        max-size: "100m"

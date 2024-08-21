@@ -1,0 +1,20 @@
+version: '3'
+services:
+  database:
+    image: postgres:13
+    container_name: meta_commerce_master_db
+    restart: always
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+      - ./data/tmp/:/tmp
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: spe3d
+      POSTGRES_PASSWORD: ${DB_PWD}
+      POSTGRES_DB: meta_commerce
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "1"
+        max-size: "100m"
